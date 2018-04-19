@@ -30,8 +30,12 @@ class MoneyField(DecimalField):
     def get_value(self, data):
         amount = super(MoneyField, self).get_value(data)
         currency = data.get(get_currency_field_name(self.field_name), None)
+        
+        # prevent circular dependency
+        from rest_framework.fields import empty
+
         if currency and amount is not None:
-            if amount == '':
+            if amount == '' or type(amount) == empty:
                 return None
             return Money(amount, currency)     
         return amount

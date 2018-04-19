@@ -55,7 +55,8 @@ setup(
     install_requires=[
         'setuptools',
         'Django>=1.8',
-        'py-moneyed>=0.7'
+        'py-moneyed>=0.7',
+        'djangorestframework==3.7.7'
     ],
     platforms=['Any'],
     keywords=['django', 'py-money', 'money'],
